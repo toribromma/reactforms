@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactBareBone from "./components/react-regular-form-example"
-import {Form, Formik, Field, ErrorMessage} from "formik"
+import FormikFunction from "./components/FormikForm";
+import { Form } from 'formik';
+
 function App() {
 
   const onSubmit = values => {
@@ -11,18 +13,8 @@ function App() {
   return (
     <div>
       <ReactBareBone/>
+      <FormikFunction/>
 
-      <Formik
-        initialValues={{
-          email: "",
-          password: ""
-        }}
-        onSubmit={onSubmit}
-      >
-
-
-      </Formik>
-      
     </div>
   );
 }
