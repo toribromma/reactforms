@@ -16,6 +16,13 @@ export default () => {
       }
     });
 
+    const handleChange = ({ target }) => {
+        const { formValues } = formState;
+        formValues[target.name] = target.value;
+        setFormState({ formValues });
+        handleValidation(target);
+      };
+
     return (
         <div className="container">
           <div className="row mb-5">
