@@ -23,6 +23,38 @@ export default () => {
         handleValidation(target);
       };
 
+      const handleValidation = target => {
+        const { name, value } = target;
+        const fieldValidationErrors = formState.formErrors;
+        const validity = formState.formValidity;
+        const isEmail = name === "email";
+        const isPassword = name === "password";
+        const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    validity[name] = value.length > 0;
+        fieldValidationErrors[name] = validity[name]
+          ? ""
+          : `${name} is required and cannot be empty`;
+    if (validity[name]) {
+          if (isEmail) {
+            validity[name] = emailTest.test(value);
+            fieldValidationErrors[name] = validity[name]
+              ? ""
+              : `${name} should be a valid email address`;
+          }
+          if (isPassword) {
+            validity[name] = value.length >= 3;
+            fieldValidationErrors[name] = validity[name]
+              ? ""
+              : `${name} should be 3 characters minimum`;
+          }
+        }
+    setFormState({
+          ...formState,
+          formErrors: fieldValidationErrors,
+          formValidity: validity
+        });
+      };
+
     return (
         <div className="container">
           <div className="row mb-5">
