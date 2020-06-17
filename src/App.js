@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactBareBone from "./components/react-regular-form-example"
 import FormikFunction from "./components/FormikForm";
-import { Form } from 'formik';
+import ReactHookForm from "./components/ReactHookForm"
 
 function App() {
 
@@ -14,6 +14,7 @@ function App() {
     <div>
       <ReactBareBone/>
       <FormikFunction/>
+      <ReactHookForm/>
 
     </div>
   );
