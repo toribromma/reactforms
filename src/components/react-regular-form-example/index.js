@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default () => {
+export default function ReactRegularForm() {
     const [formState, setFormState] = useState({
       formValues: {
         email: "",
@@ -16,12 +16,12 @@ export default () => {
       }
     });
 
-    const handleChange = ({ target }) => {
-        const { formValues } = formState;
-        formValues[target.name] = target.value;
-        setFormState({ formValues });
-        handleValidation(target);
-      };
+      const handleChange = ({ target }) => {
+          const { formValues } = formState;
+          formValues[target.name] = target.value;
+          setFormState({ formValues });
+          handleValidation(target);
+        };
 
       const handleValidation = target => {
         const { name, value } = target;
@@ -30,30 +30,31 @@ export default () => {
         const isEmail = name === "email";
         const isPassword = name === "password";
         const emailTest = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    validity[name] = value.length > 0;
-        fieldValidationErrors[name] = validity[name]
-          ? ""
-          : `${name} is required and cannot be empty`;
-    if (validity[name]) {
-          if (isEmail) {
-            validity[name] = emailTest.test(value);
+
+        validity[name] = value.length > 0;
             fieldValidationErrors[name] = validity[name]
               ? ""
-              : `${name} should be a valid email address`;
-          }
-          if (isPassword) {
-            validity[name] = value.length >= 3;
-            fieldValidationErrors[name] = validity[name]
-              ? ""
-              : `${name} should be 3 characters minimum`;
-          }
-        }
-    setFormState({
-          ...formState,
-          formErrors: fieldValidationErrors,
-          formValidity: validity
-        });
-      };
+              : `${name} is required and cannot be empty`;
+        if (validity[name]) {
+              if (isEmail) {
+                validity[name] = emailTest.test(value);
+                fieldValidationErrors[name] = validity[name]
+                  ? ""
+                  : `${name} should be a valid email address`;
+              }
+              if (isPassword) {
+                validity[name] = value.length >= 3;
+                fieldValidationErrors[name] = validity[name]
+                  ? ""
+                  : `${name} should be 3 characters minimum`;
+              }
+            }
+        setFormState({
+              ...formState,
+              formErrors: fieldValidationErrors,
+              formValidity: validity
+            });
+          };
 
       const handleSubmit = event => {
         event.preventDefault();
@@ -72,11 +73,13 @@ export default () => {
         }
       };
 
+      
+
     return (
         <div className="container">
           <div className="row mb-5">
             <div className="col-lg-12 text-center">
-              <h1 className="mt-5">React regular form</h1>
+              <h1 className="mt-5">React Regular Form</h1>
             </div>
           </div>
           <div className="row">
@@ -122,3 +125,4 @@ export default () => {
           </div>
         </div>
       );
+}
