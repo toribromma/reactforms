@@ -55,6 +55,23 @@ export default () => {
         });
       };
 
+      const handleSubmit = event => {
+        event.preventDefault();
+        const { formValues, formValidity } = formState;
+        if (Object.values(formValidity).every(Boolean)) {
+          // Form is valid
+          console.log(formValues);
+        } else {
+          for (let key in formValues) {
+            let target = {
+              name: key,
+              value: formValues[key]
+            };
+            handleValidation(target);
+          }
+        }
+      };
+
     return (
         <div className="container">
           <div className="row mb-5">
